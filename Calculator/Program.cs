@@ -44,18 +44,20 @@ namespace Calculator
 
                     int result = 0;
                    
-
                     if (operation == '+' || operation == '-' || operation == '*' || operation == '/' || operation == '%')
                     {
                         result = Class1.PerformOperation(num1, num2, operation);
                         Console.WriteLine($"Result of {num1} {operation} {num2} is: {result}");
                     }
+
                     else if (operation == '√' || operation == 'x')
                     {
                         double doubleResult = Class2.PerformOperation(num1, num2, operation);
                         Console.WriteLine($"Result of {num1} {operation} {num2} is: {doubleResult}");
                     }
+                   
                 }
+
                 else
                 {
                     Console.WriteLine("Invalid input for the second number.");

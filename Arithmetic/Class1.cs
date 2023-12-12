@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,38 +8,55 @@ namespace Arithmetic
 {
     public class Class1
     {
-        public static int PerformOperation(int a, int b, char operation)
+        public static void PerformOperation(ref double currentNumber, string inputExpression, char operatorKey, String Notation)
         {
-            int result = 0;
 
-            switch (operation)
+            if (!string.IsNullOrEmpty(inputExpression))
             {
-                case '+':
-                    result = a + b;
-                    break;
-                case '-':
-                    result = a - b;
-                    break;
-                case '*':
-                    result = a * b;
-                    break;
-                case '/':
-                    if (b != 0)
-                        result = a / b;
-                    else
-                        Console.WriteLine("Division by zero is not allowed.");
-                    break;
-                case '%':
-                    if (b != 0)
-                        result = a % b;
-                    else
-                        Console.WriteLine("Modulus by zero is not allowed.");
-                    break;
-                default:
-                    Console.WriteLine("Invalid operation");
-                    break;
+                double operand = Convert.ToDouble(inputExpression);
+                switch (operatorKey)
+                {
+                    case '+':
+                        currentNumber += operand;
+                        break;
+                    case '-':
+                        currentNumber -= operand;
+                        break;
+                    case '*':
+                        currentNumber *= operand;
+                        break;
+                    /* case 'J':
+                         currentNumber %= operand;
+                         break;*/
+                    case '/':
+
+                        if (operand != 0)
+                        {
+                            currentNumber /= operand;
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nError: Division by zero.");
+                        }
+                        break;
+
+                    default:
+                        Console.Write($"\nError: Invalid operator '{operatorKey}'.");
+                        break;
+                }
+
+                Console.Write($"\n{ScientificNotation(currentNumber, Notation)}");
             }
-            return result;
+
+        }
+
+        public static string ScientificNotation(double number, string inputformat)
+        {
+            if (inputformat == "F-E")
+
+                return string.Format("{0:0.#####e+0}", number);
+            return number.ToString();
+
         }
     }
 }

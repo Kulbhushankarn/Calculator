@@ -436,13 +436,9 @@ namespace Scientific_Calculator
                         currentNumber = PowerOperations.ConvertToDMS(result);
                         break;
 
-
-
                 }
                 Console.Write($"\n{currentNumber}");
                 result = currentNumber;
-
-
 
 
             }

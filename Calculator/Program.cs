@@ -10,7 +10,7 @@ namespace Scientific_Calculator
 {
     internal class Program
     {
-        static string staticVar1 = "radian";
+        static string staticVar1 = "DEG";
         static string staticVar2 = "!F-E";
 
         public static void Main(string[] args)
@@ -67,21 +67,21 @@ namespace Scientific_Calculator
                 else if (keyInfo.Key == ConsoleKey.P && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "radian";
+                    staticVar1 = "RAD";
                     ClearStatusLine(staticVar1);
 
                 }
                 else if (keyInfo.Key == ConsoleKey.Q && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "degree";
+                    staticVar1 = "DEG";
                     ClearStatusLine(staticVar1);
 
                 }
                 else if (keyInfo.Key == ConsoleKey.R && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "gradian";
+                    staticVar1 = "GRAD";
                     ClearStatusLine(staticVar1);
                 }
 
@@ -492,13 +492,13 @@ namespace Scientific_Calculator
 
             switch (inputUnit)
             {
-                case "radian":
+                case "RAD":
                     angleRad = angle;
                     break;
-                case "degree":
+                case "DEG":
                     angleRad = Math.PI * angle / 180.0;
                     break;
-                case "gradian":
+                case "GRAD":
                     angleRad = Math.PI * angle * 0.9 / 180.0;
                     break;
                 default:
@@ -512,22 +512,21 @@ namespace Scientific_Calculator
         public static void KeyMapping()
         {
 
-            KeyMapping1("Radian   -  ctrl+P", "Degree    -  ctrl+Q", "Gradian   - ctrl+R", 12);
-            KeyMapping1("F-E      -  ctrl+E", "!F-E      -  ctrl+F", "Exist     - ctrl+M", 13);
-
-            KeyMapping1("Sin   -  s", "Sin^(-1)   -  S", "Sinh -  l", 15);
-            KeyMapping1("Cos   -  c", "Cos^(-1)   -  C", "Cosh -  m", 16);
-            KeyMapping1("tan   -  t", "tan^(-1)   -  T", "tanh -  n", 17);
+            KeyMapping1("RAD -  ctrl+P", "DEG-  ctrl+Q", "GRAD  - ctrl+R", 12);
+            KeyMapping1("F-E  -  ctrl+E", "!F-E  -  ctrl+F", "Exist  - ctrl+M", 13);
+            KeyMapping1("Sin -  s", "Sin^(-1) -  S", "Sinh -  l", 15);
+            KeyMapping1("Cos -  c", "Cos^(-1) -  C", "Cosh -  m", 16);
+            KeyMapping1("tan -  t", "tan^(-1) -  T", "tanh -  n", 17);
             KeyMapping1("Cosec -  g", "Cosec^(-1) -  G", " ", 18);
-            KeyMapping1("Sec   -  h", "Sec^(-1)   -  H", " ", 19);
-            KeyMapping1("Cot   -  k", "Cot^(-1)   -  K", " ", 20);
+            KeyMapping1("Sec -  h", "Sec^(-1) -  H", " ", 19);
+            KeyMapping1("Cot -  k", "Cot^(-1) -  K", " ", 20);
             KeyMapping1("Log   -  L", "ln  - O", " ", 22);
-            KeyMapping1("Square      -  Q", "Cube    -  #", "SquareRoot - q", 23);
-            KeyMapping1("CubeRoot    -  Z", "10^x    -  z", "2^x        - b", 24);
-            KeyMapping1("Factorial   -  f", "1/X     -  i", "Absolute   - A", 25);
-            KeyMapping1("e^x         -  E", "floor   -  F", "Ceil       - B", 26);
-            KeyMapping1("dms         -  d", "  ", "  ", 27);
-            KeyMapping1("Pie   -  p", "Random    -  r", "e   - e", 29);
+            KeyMapping1("Square  -  Q", "Cube  -  #", "SquareRoot - q", 23);
+            KeyMapping1("CubeRoot  -  Z", "10^x  -  z", "2^x  - b", 24);
+            KeyMapping1("Factorial  -  f", "1/X  -  i", "Absolute - A", 25);
+            KeyMapping1("e^x  -  E", "floor  -  F", "Ceil - B", 26);
+            KeyMapping1("dms  -  d", "  ", "  ", 27);
+            KeyMapping1("Pie  -  p", "Random  -  r", "e  - e", 29);
 
 
         }

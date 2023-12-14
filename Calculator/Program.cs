@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Arithmetic;
 using Power;
 
@@ -10,22 +7,16 @@ namespace Scientific_Calculator
 {
     internal class Program
     {
-        static string staticVar1 = "DEG";
-        static string staticVar2 = "!F-E";
+        static string staticVar = "DEG";
+        static string staticVar1 = "!F-E";
 
         public static void Main(string[] args)
         {
-            Console.SetCursorPosition(0, 10);
-            /*Console.WriteLine("Key Mapping");
-            KeyMapping();*/
-
-
-            // Move the cursor to a specific position
-            Console.SetCursorPosition(0, 0);
+          
 
 
             Console.WriteLine();
-            Console.WriteLine($"{staticVar1} | {staticVar2}");
+            Console.WriteLine($"{staticVar} | {staticVar1}");
 
             StringBuilder inputExpression = new StringBuilder("0");
             StringBuilder number = new StringBuilder();
@@ -55,34 +46,34 @@ namespace Scientific_Calculator
                 }
                 else if (keyInfo.Key == ConsoleKey.E && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
-                    staticVar2 = "F-E";
-                    ClearStatusLine(staticVar2);
+                    staticVar1 = "F-E";
+                    ClearStatusLine(staticVar1);
                 }
                 else if (keyInfo.Key == ConsoleKey.F && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
-                    staticVar2 = "!F-E";
-                    ClearStatusLine(staticVar2);
+                    staticVar1 = "!F-E";
+                    ClearStatusLine(staticVar1);
                 }
 
                 else if (keyInfo.Key == ConsoleKey.P && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "RAD";
-                    ClearStatusLine(staticVar1);
+                    staticVar = "RAD";
+                    ClearStatusLine(staticVar);
 
                 }
                 else if (keyInfo.Key == ConsoleKey.Q && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "DEG";
-                    ClearStatusLine(staticVar1);
+                    staticVar = "DEG";
+                    ClearStatusLine(staticVar);
 
                 }
                 else if (keyInfo.Key == ConsoleKey.R && keyInfo.Modifiers == ConsoleModifiers.Control)
                 {
 
-                    staticVar1 = "GRAD";
-                    ClearStatusLine(staticVar1);
+                    staticVar = "GRAD";
+                    ClearStatusLine(staticVar);
                 }
 
                 else if (keyInfo.Key == ConsoleKey.M && keyInfo.Modifiers == ConsoleModifiers.Control)
@@ -133,7 +124,7 @@ namespace Scientific_Calculator
                             ClearConsoleExceptFirstTwoLine();
                             inputExpression.Append(inputChar);
                             Console.Write(inputExpression);
-                            Class1.PerformOperation(ref currentNumber, number.ToString(), op, staticVar2);
+                            Class1.PerformOperation(ref currentNumber, number.ToString(), op, staticVar1);
                             op = inputChar;
                             number.Clear();
                         }
@@ -176,7 +167,7 @@ namespace Scientific_Calculator
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Append(number.ToString()).Append('=');
                         Console.Write(inputExpression);
-                        Class1.PerformOperation(ref currentNumber, number.ToString(), op, staticVar2);
+                        Class1.PerformOperation(ref currentNumber, number.ToString(), op, staticVar1);
                         number.Clear();
                     }
 
@@ -203,15 +194,13 @@ namespace Scientific_Calculator
                          number.Clear();
                      }*/
 
-
-
                 }
             } while (true);
 
             bool IsValidInputKey(char input)
             {
                 char[] allowedKeys = { 'Q', 'M', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '+',
-                    '-', '*', '/', '=', 'S', 's', 'C', 'c', 'T', 't', ')', 'L', 'O', '=','Q','#','q','Z','z'
+                    '-', '*', '/', '=', '^', 'S', 's', 'C', 'c', 'T', 't', ')', 'L', 'O', '=','Q','#','q','Z','z'
                     ,'b','f','i','A','e','p','E','F','B','d','r','J','G','g','h','H','k','K','l','m','n'};
 
                 return Array.IndexOf(allowedKeys, input) != -1;
@@ -219,7 +208,7 @@ namespace Scientific_Calculator
 
             bool IsOperatorKey(char c)
             {
-                return c == '+' || c == '-' || c == '*' || c == '/' || c == ')';
+                return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
             }
             void IsTrigonometricFunctionKey(char c)
             {
@@ -234,98 +223,95 @@ namespace Scientific_Calculator
                         number.Insert(0, "sin(").Append(")");
                         Console.Write(inputExpression.ToString()+number.ToString());*/
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.Sine(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Sine(CalculateTrigonometricValue(result, staticVar));
                         break;
 
                     case 'c':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "cos(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.Cosine(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Cosine(CalculateTrigonometricValue(result, staticVar));
                         break;
                     case 't':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "tan(" + number).Append(")");
                         Console.Write(inputExpression);
 
-                        currentNumber = PowerOperations.Tangent(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Tangent(CalculateTrigonometricValue(result, staticVar));
                         break;
                     case 'S':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "sin^(-1)(" + number).Append(")");
                         Console.Write(inputExpression);
 
-                        currentNumber = PowerOperations.SineInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.SineInverse(result);
                         break;
                     case 'C':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "cos^(-1)(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.CosineInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.CosineInverse(result);
                         break;
                     case 'T':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "tan^(-1)(" + number).Append(")"); ;
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.TangentInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.TangentInverse(result);
                         break;
                     case 'g':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "Cosec(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.Cosec(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Cosec(CalculateTrigonometricValue(result, staticVar));
                         break;
                     case 'G':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "cosec^(-1)(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.CosecInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.CosecInverse(result);
                         break;
                     case 'h':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "Sec(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.Sec(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Sec(CalculateTrigonometricValue(result, staticVar));
                         break;
                     case 'H':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "Sec^(-1)(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.SecInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.SecInverse(result);
                         break;
                     case 'k':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "Cot(" + number).Append(")"); ;
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.Cot(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.Cot(CalculateTrigonometricValue(result, staticVar));
                         break;
                     case 'K':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "Cot^(-1)(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.CotInverse(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.CotInverse(result);
                         break;
                     case 'l':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "sinh(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.SineHyp(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.SineHyp(result);
                         break;
                     case 'm':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "cosh(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.CosineHyp(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.CosineHyp(result);
                         break;
                     case 'n':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "tanh(" + number).Append(")");
                         Console.Write(inputExpression);
-                        currentNumber = PowerOperations.TangentHyp(CalculateTrigonometricValue(result, staticVar1));
+                        currentNumber = PowerOperations.TangentHyp(result);
                         break;
-
-
-
 
                     case 'L':
                         ClearConsoleExceptFirstTwoLine();
@@ -428,7 +414,6 @@ namespace Scientific_Calculator
                         currentNumber = PowerOperations.CeilingFunction(result);
                         break;
 
-
                     case 'd':
                         ClearConsoleExceptFirstTwoLine();
                         inputExpression.Insert(0, "dms(" + number).Append(")");
@@ -442,8 +427,6 @@ namespace Scientific_Calculator
 
 
             }
-
-
 
         }
 
@@ -475,7 +458,7 @@ namespace Scientific_Calculator
             // Clear the line and write new content
             Console.Write(new string(' ', Console.WindowWidth - 1)); // Clear the line
             Console.SetCursorPosition(0, Console.CursorTop); // Move back to the beginning of the line
-            Console.Write($"{staticVar1} | {staticVar2}");
+            Console.Write($"{staticVar} | {staticVar1}");
             // Restore the original cursor position
             Console.SetCursorPosition(originalLeft, originalTop);
         }
@@ -503,18 +486,10 @@ namespace Scientific_Calculator
             return angleRad;
 
 
-        }
-
-
-        public static void KeyMapping1(string c1, string c2, string c3, int row)
-        {
-            Console.SetCursorPosition(0, row);
-            Console.Write($"{c1}");
-            Console.SetCursorPosition(30, row);
-            Console.Write($"{c2}");
-            Console.SetCursorPosition(60, row);
-            Console.Write($"{c3}");
 
         }
+
+
+      
     }
 }

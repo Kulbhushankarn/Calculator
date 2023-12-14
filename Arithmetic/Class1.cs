@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Arithmetic
 {
     public class Class1
     {
-        public static void PerformOperation(ref double currentNumber, string inputExpression, char operatorKey, String Notation)
+        public static void PerformOperation(ref double currentNumber, string inputExpression, char operatorKey, string Notation)
         {
-
             if (!string.IsNullOrEmpty(inputExpression))
             {
                 double operand = Convert.ToDouble(inputExpression);
@@ -25,11 +20,7 @@ namespace Arithmetic
                     case '*':
                         currentNumber *= operand;
                         break;
-                    /* case 'J':
-                         currentNumber %= operand;
-                         break;*/
                     case '/':
-
                         if (operand != 0)
                         {
                             currentNumber /= operand;
@@ -39,24 +30,24 @@ namespace Arithmetic
                             Console.WriteLine("\nError: Division by zero.");
                         }
                         break;
+                    case '^':
+                        currentNumber = Math.Pow(currentNumber, operand);
+                        break;
 
                     default:
                         Console.Write($"\nError: Invalid operator '{operatorKey}'.");
                         break;
                 }
 
-                Console.Write($"\n{ScientificNotation(currentNumber, Notation)}");
+                Console.Write($"\n{CalculateResult(currentNumber, Notation)}");
             }
-
         }
 
-        public static string ScientificNotation(double number, string inputformat)
+        public static string CalculateResult(double number, string notation)
         {
-            if (inputformat == "F-E")
-
+            if (notation == "F-E")
                 return string.Format("{0:0.#####e+0}", number);
             return number.ToString();
-
         }
     }
 }
